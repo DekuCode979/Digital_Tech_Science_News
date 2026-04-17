@@ -1,25 +1,22 @@
-// Para desarrollo local, pega aquí tu llave entre comillas:
-const API_KEY = "TU_API_KEY_AQUI"; 
-
-const API_URL = `https://newsapi.org/v2/top-headlines?category=technology&language=es&pageSize=20&apiKey=${API_KEY}`;
+// Llamamos a nuestra función interna de Vercel en lugar de a NewsAPI directamente
+const API_URL = "/api/getNews"; 
 
 async function fetchNews() {
   const container = document.getElementById("news-container");
   try {
     const res = await fetch(API_URL);
     
-    // NewsAPI a veces devuelve error 426 en local por restricciones de CORS
-    if (res.status === 426) {
-        throw new Error("NewsAPI no permite peticiones desde el navegador en el plan gratuito (CORS).");
+    // Si hay un error (como el 426 de CORS o API Key inválida), lo manejamos aquí
+    if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Error en la respuesta de la API");
     }
-
-    if (!res.ok) throw new Error("Error en la respuesta de la API");
     
     const data = await res.json();
     const articles = data.articles || [];
 
     if (articles.length === 0) {
-      container.innerHTML = "<p class='text-center'>No se encontraron noticias en este momento.</p>";
+      container.innerHTML = "<p class='text-center text-white'>No se encontraron noticias en este momento.</p>";
       return;
     }
 
@@ -29,20 +26,19 @@ async function fetchNews() {
 
   } catch (err) {
     console.error("Error al cargar noticias:", err);
-    container.innerHTML = `<div class='alert alert-danger'>${err.message}</div>`;
+    container.innerHTML = `<div class='alert alert-danger'>Error: ${err.message}</div>`;
   }
 }
 
 function renderNews(articles) {
   const container = document.getElementById("news-container");
-  container.innerHTML = ""; // Limpiar antes de renderizar
+  container.innerHTML = ""; 
   
-  // Usamos un fragmento para mejorar el rendimiento del DOM
   const fragment = document.createDocumentFragment();
 
   articles.forEach(article => {
     const col = document.createElement("div");
-    col.className = "col-md-6 col-lg-4"; // Ajustado para mejor responsividad
+    col.className = "col-md-6 col-lg-4"; 
     
     const imgSrc = article.urlToImage || "https://via.placeholder.com/400x200?text=Tecnología";
     
@@ -63,7 +59,7 @@ function renderNews(articles) {
   container.appendChild(fragment);
 }
 
-// Lógica de redacción y descarga (Se mantiene igual, funciona bien)
+// Tu lógica de redacción profesional
 function redactarProfesional(texto, titulo) {
   return `TÍTULO: ${titulo}\n` +
          `RESUMEN PROFESIONAL:\n` +
@@ -72,6 +68,7 @@ function redactarProfesional(texto, titulo) {
          `--------------------------------------------------\n\n`;
 }
 
+// Tu función de descarga
 window.downloadTop10 = function() {
   if (!window.topArticles || window.topArticles.length === 0) {
     alert("⚠️ Primero debes cargar las noticias.");
@@ -88,7 +85,7 @@ window.downloadTop10 = function() {
   link.href = URL.createObjectURL(blob);
   link.download = `Reporte_Tech_${new Date().toLocaleDateString()}.txt`;
   link.click();
-  URL.revokeObjectURL(link.href); // Limpieza de memoria
+  URL.revokeObjectURL(link.href);
 };
 
 // Iniciar app
