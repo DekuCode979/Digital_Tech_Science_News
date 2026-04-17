@@ -1,5 +1,4 @@
 // API Key de NewsAPI.org
-const API_KEY = "999225b25a194d68bf9f31d7a0574b79";
 const API_URL = `https://newsapi.org/v2/top-headlines?category=technology&language=es&pageSize=20&apiKey=${API_KEY}`;
 
 async function fetchNews() {
