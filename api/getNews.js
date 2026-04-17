@@ -1,15 +1,11 @@
 export default async function handler(req, res) {
-  if (req.method !== "GET") {
-    return res.status(405).json({ error: "Método no permitido" });
-  }
-
   const API_KEY = process.env.NEWS_API_KEY;
 
   if (!API_KEY) {
     return res.status(500).json({ error: "API key no configurada" });
   }
 
-  const url = `https://newsapi.org/v2/top-headlines?category=technology&language=es&pageSize=20&apiKey=${API_KEY}`;
+  const url = `https://gnews.io/api/v4/top-headlines?topic=technology&lang=es&max=10&apikey=${API_KEY}`;
 
   try {
     const response = await fetch(url);
@@ -21,11 +17,21 @@ export default async function handler(req, res) {
       });
     }
 
-    res.status(200).json(data);
+    // Adaptamos formato
+    const adapted = {
+      articles: data.articles.map(a => ({
+        title: a.title,
+        description: a.description,
+        url: a.url,
+        urlToImage: a.image
+      }))
+    };
+
+    res.status(200).json(adapted);
 
   } catch (error) {
     res.status(500).json({
-      error: "Error al conectar con el servidor de noticias"
+      error: "Error al conectar con GNews"
     });
   }
 }
