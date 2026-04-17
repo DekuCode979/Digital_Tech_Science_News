@@ -1,0 +1,45 @@
+/* Fondo degradado elegante */
+body {
+  background: linear-gradient(135deg, #0a0f1c, #1c2a3a, #2e3b4e);
+  color: #f1f1f1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Encabezado */
+header.bg-gradient {
+  background: linear-gradient(90deg, #1c1c1c, #2a2a2a);
+  border-bottom: 3px solid #17a2b8; /* turquesa */
+}
+
+/* Tarjetas estilo revista */
+.card {
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  transition: transform 0.2s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  max-height: 220px;
+  object-fit: cover;
+}
+.card-title {
+  color: #17a2b8; /* turquesa */
+  font-weight: bold;
+}
+.card-text {
+  color: #ccc;
+}
+
+/* Botón destacado */
+.btn-info {
+  font-weight: bold;
+  border-radius: 30px;
+}
