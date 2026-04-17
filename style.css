@@ -1,45 +1,74 @@
-/* Fondo degradado elegante */
+/* Fondo degradado elegante con mayor profundidad */
 body {
-  background: linear-gradient(135deg, #0a0f1c, #1c2a3a, #2e3b4e);
+  background: radial-gradient(circle at top, #1c2a3a 0%, #0a0f1c 100%);
   color: #f1f1f1;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin: 0;
 }
 
-/* Encabezado */
+/* Encabezado con desenfoque de cristal (Glassmorphism) */
 header.bg-gradient {
-  background: linear-gradient(90deg, #1c1c1c, #2a2a2a);
-  border-bottom: 3px solid #17a2b8; /* turquesa */
+  background: rgba(28, 28, 28, 0.8) !important;
+  backdrop-filter: blur(10px); /* Efecto de desenfoque moderno */
+  border-bottom: 2px solid #17a2b8;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 /* Tarjetas estilo revista */
 .card {
-  background-color: #1e1e1e;
-  border: none;
+  background-color: #161b22; /* Un gris azulado más profundo */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-  transition: transform 0.2s ease-in-out;
-}
-.card:hover {
-  transform: translateY(-5px);
-}
-.card img {
-  max-height: 220px;
-  object-fit: cover;
-}
-.card-title {
-  color: #17a2b8; /* turquesa */
-  font-weight: bold;
-}
-.card-text {
-  color: #ccc;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Botón destacado */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(23, 162, 184, 0.2); /* Resplandor turquesa sutil */
+  border-color: #17a2b8;
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: filter 0.3s ease;
+}
+
+.card:hover img {
+  filter: brightness(1.1);
+}
+
+.card-title {
+  color: #17a2b8;
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+/* Botón destacado con gradiente */
 .btn-info {
-  font-weight: bold;
-  border-radius: 30px;
+  background: linear-gradient(45deg, #17a2b8, #117a8b);
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  transition: opacity 0.2s;
+}
+
+.btn-info:hover {
+  opacity: 0.9;
+  color: white;
+  box-shadow: 0 0 15px rgba(23, 162, 184, 0.4);
+}
+
+/* Footer con contraste */
+footer {
+    background-color: #05070a !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
