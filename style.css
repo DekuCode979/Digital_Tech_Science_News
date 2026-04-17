@@ -94,6 +94,29 @@ header.bg-gradient {
   line-height: 1.4;
 }
 
+/* 🔥 MEJORA DE LEGIBILIDAD (NUEVO) */
+.card-text {
+  color: #c9d1d9 !important;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+/* Mejor contraste para textos secundarios de Bootstrap */
+.text-muted {
+  color: #a9b4c0 !important;
+}
+
+/* Links dentro de cards */
+.card a {
+  color: #e6edf3;
+  text-decoration: none;
+}
+
+.card a:hover {
+  color: #17a2b8;
+}
+
 /* Botón */
 .btn-info {
   background: linear-gradient(45deg, #17a2b8, #117a8b);
