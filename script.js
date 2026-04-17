@@ -1,4 +1,4 @@
-// Llamamos a nuestra función interna de Vercel en lugar de a NewsAPI directamente
+// Llamamos a la función interna de Vercel
 const API_URL = "/api/getNews"; 
 
 async function fetchNews() {
@@ -6,7 +6,7 @@ async function fetchNews() {
   try {
     const res = await fetch(API_URL);
     
-    // Si hay un error (como el 426 de CORS o API Key inválida), lo manejamos aquí
+    // Si hay un error
     if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.message || "Error en la respuesta de la API");
@@ -59,7 +59,7 @@ function renderNews(articles) {
   container.appendChild(fragment);
 }
 
-// Tu lógica de redacción profesional
+// lógica de redacción 
 function redactarProfesional(texto, titulo) {
   return `TÍTULO: ${titulo}\n` +
          `RESUMEN PROFESIONAL:\n` +
@@ -68,7 +68,7 @@ function redactarProfesional(texto, titulo) {
          `--------------------------------------------------\n\n`;
 }
 
-// Tu función de descarga
+// Función de descarga
 window.downloadTop10 = function() {
   if (!window.topArticles || window.topArticles.length === 0) {
     alert("⚠️ Primero debes cargar las noticias.");
